@@ -3,6 +3,12 @@
 #include <string.h>
 #define BUF 1024
 
+
+void error(char* error) {
+	fprintf(stderr, "\033[31m%s\033[m\n", error);
+	exit(1);
+}
+
 char* readLine() {
 	int bufsize = BUF; 
 	char* buffer = malloc(sizeof (char) * bufsize);
@@ -10,7 +16,7 @@ char* readLine() {
 		,	c;
 
 	if (!buffer){
-		// print buffer error message
+		error("error reading line");
 	}
 
 	while ( 1 ) 
@@ -35,7 +41,7 @@ char* readLine() {
 			
 			if (!buffer)
 			{
-				//print error and exit
+				error("error reading line");
 			}
 		}
 	}
@@ -54,11 +60,20 @@ void flip(char* input) {
 	}
 }
 
-int main() 
+int main
+( int argc, char* argv[])
 { 
-	char* input = readLine();
-	flip(input);
-	printf("\033[32m%s\033[m\n",input);
+	if ( argc > 1) {
+		for(int i = 1; i < argc; i++){
+			flip(argv[i]);
+			printf("\033[32m%s \033[m", argv[i]);
+		}
+		printf("\n");
+	} else {
+		char* input = readLine();
+		flip(input);
+		printf("\033[32m%s\033[m\n",input);
+	}
 	//printf("\033[31m%c\033[m\n", (27 - (98 - 'a')) + 96);
 	
 	//for (char c = 'a'; c <= 'z'; c++) {
