@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Wpedantic -ggdb
 
 BIN = bin
-EXEC = main
+EXEC = flippy
 
 $(EXEC): *.c
 	@printf "\033[33mBuilding...\033[m\n"

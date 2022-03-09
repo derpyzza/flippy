@@ -1,6 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/derpyzza/projects/flippy'
 printf "\033[33mBuilding...\033[m\n"
-gcc main.c -o bin/main -Wall -Wextra -Wpedantic -ggdb 
+gcc main.c -o bin/flippy -Wall -Wextra -Wpedantic -ggdb 
 make: Leaving directory '/home/derpyzza/projects/flippy'
  

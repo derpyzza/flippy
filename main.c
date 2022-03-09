@@ -12,8 +12,7 @@ void error(char* error) {
 char* readLine() {
 	int bufsize = BUF; 
 	char* buffer = malloc(sizeof (char) * bufsize);
-	int position 	= 0
-		,	c;
+	int position 	= 0, c;
 
 	if (!buffer){
 		error("error reading line");
@@ -49,10 +48,8 @@ char* readLine() {
 
 void flip(char* input) {
 	size_t len = strlen(input);
-	//printf("len:%ld\n", len);
 	
 	for ( size_t i = 0; i <= len - 1; i++ ) {
-		//printf("i:%d\n", i);
 		if ( input [i] >= 65 && input [i] <= 90){
 			input[i] = (27 - (input[i] - 64)) + 64;
 		}
@@ -63,20 +60,18 @@ void flip(char* input) {
 int main
 ( int argc, char* argv[])
 { 
-	if ( argc > 1) {
+ if ( argc > 1) {
 		for(int i = 1; i < argc; i++){
 			flip(argv[i]);
 			printf("\033[32m%s \033[m", argv[i]);
 		}
 		printf("\n");
-	} else {
+	} else { 
+		printf(">>> ");
+		printf("\033[32m");
 		char* input = readLine();
+		printf("\033[m");
 		flip(input);
-		printf("\033[32m%s\033[m\n",input);
+		printf("%s\n",input);
 	}
-	//printf("\033[31m%c\033[m\n", (27 - (98 - 'a')) + 96);
-	
-	//for (char c = 'a'; c <= 'z'; c++) {
-	//	printf("c: %c, id: %i, #: %i, f: %c\n", c, c, c - 96, (27 - (c - 96)) + 96);
-	//}
 }
