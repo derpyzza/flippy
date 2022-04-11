@@ -22,7 +22,7 @@ char* readLine() {
 	{
 		c = getchar();
 
-		if ( c == EOF || c == '\n' ) 
+		if ( c == EOF || c == '\n')
 		{
 			buffer[position] = '\0';
 			return buffer;
@@ -48,12 +48,23 @@ char* readLine() {
 
 void flip(char* input) {
 	size_t len = strlen(input);
+	int lowerKey = 96
+		,	upperKey = 64
+		,	numKey	 = 27;
 	
 	for ( size_t i = 0; i <= len - 1; i++ ) {
+		
+		// For every character, if it's a letter of the alphabet, subract the caseKey ( 64 for upper 
+		// case, 96 for lower ) from the character to get the index of the character in the alphabet 
+		// ( index starts at a = 1, ends at z = 26 ).
+		// once you have the index of the character, subtract the index from the total number of characters in the
+		// alphabet plus one ( so, 27 ). that will give you the opposite, or the mirror of the selected character.
+		// once you have the mirror, add the caseKey back to the character, to get the ascii code of the character back.
 		if ( input [i] >= 65 && input [i] <= 90){
-			input[i] = (27 - (input[i] - 64)) + 64;
+			input[i] = (numKey - (input[i] - upperKey)) + upperKey;
 		}
-		else if ( input[i] <= 122 && input[i] >= 96 ) input[i] = (27 - (input[i] - 96)) + 96;
+		else if ( input[i] <= 122 && input[i] >= 96 ) 
+		input[i] = (numKey - (input[i] - lowerKey)) + lowerKey;
 	}
 }
 
